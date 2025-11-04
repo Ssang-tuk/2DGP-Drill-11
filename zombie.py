@@ -53,9 +53,15 @@ class Zombie:
 
     def draw(self):
         if self.dir < 0:
-            Zombie.images['Walk'][int(self.frame)].composite_draw(0, 'h', self.x, self.y, 200 * self.scale, 200 * self.scale)
+            if self.hp == 1:
+                Zombie.images['Walk'][int(self.frame)].composite_draw(0, 'h', self.x, self.y - 50, 200 * self.scale, 200 * self.scale)
+            else:
+                Zombie.images['Walk'][int(self.frame)].composite_draw(0, 'h', self.x, self.y, 200 * self.scale, 200 * self.scale)
         else:
-            Zombie.images['Walk'][int(self.frame)].draw(self.x, self.y, 200 * self.scale, 200 * self.scale)
+            if self.hp == 1:
+                Zombie.images['Walk'][int(self.frame)].draw(self.x, self.y - 50, 200 * self.scale, 200 * self.scale)
+            else:
+                Zombie.images['Walk'][int(self.frame)].draw(self.x, self.y, 200 * self.scale, 200 * self.scale)
         draw_rectangle(*self.get_bb())
 
     def handle_collision(self, group, other):
