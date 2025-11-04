@@ -34,10 +34,18 @@ class Ball:
         self.yv -= GRAVITY * game_framework.frame_time  # m/s
 
     def handle_collision(self, group, other):
+
+        if group == 'ball:zombie':
+            if self in game_world.world[1]:
+                game_world.remove_object(self)
+
         if group == 'boy:ball':
             game_world.remove_object(self)
+
         elif group == 'grass:ball':
             self.stopped = True
+
+
 
 
 
