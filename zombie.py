@@ -59,7 +59,14 @@ class Zombie:
         draw_rectangle(*self.get_bb())
 
     def handle_collision(self, group, other):
+        if group == 'boy::zombie':
+            game_framework.quit()
+
         if group == 'ball:zombie':
+
+            if other.stopped:
+                return
+
             self.hp -= 1
             if self.hp == 1:
                 self.scale = 0.5
