@@ -43,7 +43,6 @@ class Zombie:
         else:
             return self.x - 100, self.y - 100, self.x + 100, self.y + 100
 
-
     def update(self):
         self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
         self.x += RUN_SPEED_PPS * self.dir * game_framework.frame_time
