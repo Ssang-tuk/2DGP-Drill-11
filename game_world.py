@@ -20,6 +20,7 @@ def render():
             o.draw()
 
 def remove_object(o):
+
     for layer in world:
         if o in layer:
             layer.remove(o)
@@ -27,6 +28,7 @@ def remove_object(o):
             return
 
     raise ValueError('Cannot delete non existing object')
+
 
 
 def clear():

@@ -39,18 +39,26 @@ def init():
     for ball in balls:
         game_world.add_collision_pair('boy:ball', None, ball)
 
-    #zombies = [Zombie() for _ in range(4)]
-    #game_world.add_objects(zombies, 1)
+    zombies = [Zombie() for _ in range(4)]
+    game_world.add_objects(zombies, 1)
 
 
 def update():
     game_world.update()
     game_world.handle_collisions()
-    for ball in balls:
+
+    remove_list = []
+    for ball in list(balls):  # 원본 복사해서 순회
         if game_world.collide(boy, ball):
             print('COLLISION boy : ball')
             boy.ball_count += 1
-            game_world.remove_object(ball)
+            if ball in game_world.world[1]:  # 실제 world에 있을 때만 제거
+                game_world.remove_object(ball)
+            remove_list.append(ball)
+
+    # 한 번에 제거
+    for ball in remove_list:
+        if ball in balls:
             balls.remove(ball)
 
 def draw():
