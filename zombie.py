@@ -33,6 +33,8 @@ class Zombie:
         self.load_images()
         self.frame = random.randint(0, 9)
         self.dir = random.choice([-1,1])
+        self.hp = 2
+        self.scale = 1.0
 
 
     def get_bb(self):
@@ -56,6 +58,7 @@ class Zombie:
             Zombie.images['Walk'][int(self.frame)].draw(self.x, self.y, 200, 200)
         draw_rectangle(*self.get_bb())
 
-    def handle_event(self, event):
+    def handle_collision(self, group, other):
         pass
+
 
